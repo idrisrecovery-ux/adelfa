@@ -28,7 +28,7 @@
             background-color: var(--bg-light);
             color: var(--dark-blue);
             line-height: 1.6;
-            overflow-x: hidden; /* Yan sürüşmənin qarşısını almaq üçün */
+            overflow-x: hidden;
         }
 
         a {
@@ -38,9 +38,7 @@
             display: inline-block;
         }
 
-        ul {
-            list-style: none;
-        }
+        ul { list-style: none; }
 
         .container {
             max-width: 1200px;
@@ -69,7 +67,7 @@
             width: auto;
         }
 
-        /* Desktop Menu (Adi Hal) */
+        /* Desktop Menu */
         .nav-links {
             display: flex;
             gap: 30px;
@@ -86,9 +84,9 @@
 
         /* --- HAMBURGER MENU ICON (Mobile Only) --- */
         .hamburger {
-            display: none; /* Kompüterdə gizlidir */
+            display: none;
             cursor: pointer;
-            z-index: 2001; /* Menyudan üstdə qalsın */
+            z-index: 2001;
         }
 
         .hamburger div {
@@ -100,62 +98,99 @@
             border-radius: 2px;
         }
 
-        /* Hamburger Animasiyası (X olur) */
         .hamburger.active div:nth-child(1) {
             transform: rotate(-45deg) translate(-7px, 6px);
             background-color: var(--accent-pink);
         }
-        .hamburger.active div:nth-child(2) {
-            opacity: 0;
-        }
+        .hamburger.active div:nth-child(2) { opacity: 0; }
         .hamburger.active div:nth-child(3) {
             transform: rotate(45deg) translate(-7px, -6px);
             background-color: var(--accent-pink);
         }
 
-        /* --- MOBILE OVERLAY MENU (Açılan Pəncərə) --- */
+        /* --- MOBILE SIDEBAR MENU --- */
         .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: auto;
+            width: 85%;
+            max-width: 400px;
+            height: 100%;
+            background-color: #ffffff;
+            z-index: 2002;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            padding: 40px;
+            transform: translateX(100%); 
+            transition: transform 0.4s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+            box-shadow: -5px 0 25px rgba(0,0,0,0.2);
+        }
+
+        .mobile-menu-overlay.active {
+            transform: translateX(0);
+        }
+
+        .menu-backdrop {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: #ffffff;
-            z-index: 2000;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            transform: translateY(-100%); /* Yuxarıda gizlənib */
-            transition: transform 0.4s ease-in-out;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 2001;
             opacity: 0;
+            visibility: hidden;
+            transition: 0.3s;
         }
 
-        .mobile-menu-overlay.active {
-            transform: translateY(0); /* Aşağı düşür */
+        .menu-backdrop.active {
             opacity: 1;
+            visibility: visible;
         }
 
-        .mobile-menu-links li {
-            margin: 20px 0;
+        .close-btn {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            font-size: 40px;
+            cursor: pointer;
+            color: var(--dark-blue);
+            line-height: 1;
+        }
+        
+        .close-btn:hover { color: var(--accent-pink); }
+
+        .mobile-menu-links {
+            margin-top: 40px;
+            width: 100%;
+            text-align: left;
+        }
+
+        .mobile-menu-links li { 
+            margin: 25px 0; 
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
         }
 
         .mobile-menu-links a {
-            font-size: 24px;
-            font-weight: 700;
+            font-size: 22px;
+            font-weight: 800;
+            text-transform: uppercase;
             color: var(--dark-blue);
+            display: block;
         }
-
-        .mobile-menu-links a:hover {
-            color: var(--accent-orange);
-        }
+        .mobile-menu-links a:hover { color: var(--accent-orange); }
 
         .mobile-footer {
-            margin-top: 40px;
+            margin-top: auto;
+            margin-bottom: 20px;
             display: flex;
             gap: 15px;
             justify-content: center;
+            width: 100%;
         }
 
         /* --- SOSİAL DÜYMƏLƏR --- */
@@ -170,90 +205,44 @@
             transition: transform 0.3s ease;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
-
         .social-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 6px 12px rgba(0,0,0,0.2);
         }
+        .social-btn svg { width: 24px; height: 24px; fill: currentColor; }
+        .instagram-btn { background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); }
+        .tiktok-btn { background-color: #000000; }
 
-        .social-btn svg {
-            width: 24px;
-            height: 24px;
-            fill: currentColor;
-        }
-
-        .instagram-btn {
-            background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); 
-        }
-
-        .tiktok-btn {
-            background-color: #000000;
-        }
-
-        /* --- HERO SECTION --- */
+        /* --- HERO --- */
         .hero {
             padding: 100px 0;
             text-align: center;
             background-color: var(--bg-gray);
         }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            color: var(--dark-blue);
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: #555;
-            max-width: 600px;
-            margin: 0 auto 40px auto;
-        }
-
+        .hero h1 { font-size: 3rem; margin-bottom: 20px; color: var(--dark-blue); }
+        .hero p { font-size: 1.2rem; color: #555; max-width: 600px; margin: 0 auto 40px auto; }
         .cta-button {
             display: inline-block;
             padding: 15px 40px;
             background: linear-gradient(90deg, var(--accent-orange), var(--accent-pink), var(--accent-green), var(--accent-blue));
-            color: white;
-            font-weight: bold;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            border: none;
-            cursor: pointer;
+            color: white; font-weight: bold; border-radius: 50px; font-size: 1.1rem; border: none; cursor: pointer;
         }
 
-        /* --- SECTIONS COMMON --- */
-        section { padding: 80px 0; }
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 40px;
-            position: relative;
+        /* --- SECTIONS (FIX EDİLƏN HİSSƏ) --- */
+        section { 
+            padding: 80px 0; 
+            /* Bu kod menyunun hündürlüyünü nəzərə alaraq keçidi tənzimləyir */
+            scroll-margin-top: 120px; 
         }
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background: var(--accent-pink);
-            margin: 15px auto 0;
-            border-radius: 2px;
-        }
+        
+        .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 40px; position: relative; }
+        .section-title::after { content: ''; display: block; width: 60px; height: 4px; background: var(--accent-pink); margin: 15px auto 0; border-radius: 2px; }
 
-        /* --- SERVICES & PROJECTS (Grid & Slider) --- */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
+        /* --- SERVICES --- */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
         .service-card {
-            background: #fff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            text-align: center;
-            border-top: 5px solid var(--dark-blue);
-            transition: 0.3s;
+            background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); text-align: center;
+            border-top: 5px solid var(--dark-blue); transition: 0.3s;
         }
         .service-card:nth-child(1) { border-top-color: var(--accent-orange); }
         .service-card:nth-child(2) { border-top-color: var(--accent-pink); }
@@ -262,6 +251,7 @@
         .service-card:hover { transform: translateY(-10px); }
         .service-card h3 { margin-bottom: 15px; font-size: 1.5rem; }
 
+        /* --- PROJECTS --- */
         #projects { background-color: var(--bg-gray); }
         .projects-wrapper-relative { position: relative; display: flex; align-items: center; }
         .projects-scroll-wrapper {
@@ -275,9 +265,8 @@
         }
         .project-img:hover { transform: scale(1.03); }
         .scroll-btn {
-            background-color: rgba(21, 30, 43, 0.7); color: white; border: none;
-            width: 40px; height: 40px; border-radius: 50%; cursor: pointer;
-            z-index: 10; display: flex; align-items: center; justify-content: center;
+            background-color: rgba(21, 30, 43, 0.7); color: white; border: none; width: 40px; height: 40px;
+            border-radius: 50%; cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center;
             font-size: 20px; transition: 0.3s; user-select: none;
         }
         .left-btn { margin-right: 10px; }
@@ -286,32 +275,25 @@
         /* --- CONTACT --- */
         .contact-container { display: flex; flex-direction: column; align-items: center; text-align: center; }
         .contact-info h3 { font-size: 2rem; margin-bottom: 20px; }
-        .big-phone {
-            font-size: 2.5rem; font-weight: 800; color: var(--dark-blue);
-            display: block; margin: 20px 0;
-        }
+        .big-phone { font-size: 2.5rem; font-weight: 800; color: var(--dark-blue); display: block; margin: 20px 0; }
         .big-phone span { color: var(--accent-green); }
-        .contact-actions {
-            display: flex; justify-content: center; align-items: center;
-            gap: 15px; margin-top: 20px; width: 100%;
-        }
+        .contact-actions { display: flex; justify-content: center; align-items: center; gap: 15px; margin-top: 20px; width: 100%; }
 
         footer { background: var(--dark-blue); color: #fff; text-align: center; padding: 30px 0; }
 
-        /* --- MOBILE RESPONSIVE LOGIC --- */
+        /* --- MOBILE RESPONSIVE --- */
         @media (max-width: 768px) {
-            /* Desktop menyunu gizlət */
             .nav-links { display: none; }
-            
-            /* Hamburqer ikonunu göstər */
             .hamburger { display: block; }
-
+            
             .logo img { height: 60px; }
             .hero h1 { font-size: 2rem; }
             .big-phone { font-size: 1.8rem; }
             .project-img { height: 220px; }
             
-            /* Əlaqə düymələri mobildə səliqəli olsun */
+            /* Mobildə keçid məsafəsini tənzimləyirik */
+            section { scroll-margin-top: 90px; }
+
             .contact-actions { gap: 10px; padding: 0 10px; }
             .contact-actions .cta-button {
                 padding: 0 15px; font-size: 14px; height: 50px;
@@ -344,7 +326,11 @@
         </div>
     </header>
 
+    <div class="menu-backdrop" id="menuBackdrop" onclick="toggleMenu()"></div>
+
     <div class="mobile-menu-overlay" id="mobileMenu">
+        <div class="close-btn" onclick="toggleMenu()">&times;</div>
+
         <ul class="mobile-menu-links">
             <li><a href="#services" onclick="toggleMenu()">Xidmətlər</a></li>
             <li><a href="#projects" onclick="toggleMenu()">Bizim Layihələr</a></li>
@@ -357,6 +343,9 @@
             </a>
             <a href="https://www.instagram.com/adelfaprint.az" target="_blank" class="social-btn instagram-btn">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.5 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.9 0-184.9zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+            </a>
+            <a href="#" class="social-btn tiktok-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"/></svg>
             </a>
         </div>
     </div>
@@ -426,7 +415,6 @@
                     <p>Sualınız var? Bizimlə dərhal əlaqə saxlayın:</p>
                     <a href="tel:+994504206610" class="big-phone">+994 50 420 66 10</a>
                     <p>Ünvan: Bakı şəhəri (Dəqiq ünvan əlavə ediləcək)</p>
-                    
                     <div class="contact-actions">
                         <a href="https://wa.me/994504206610" target="_blank" class="cta-button" style="background: var(--whatsapp-green); display: inline-flex; align-items: center; gap: 8px;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 448 512" fill="white"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-47.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
@@ -451,21 +439,34 @@
     </footer>
 
     <script>
-        // --- MOBİL MENYU TOGGLE FUNKSİYASI ---
         function toggleMenu() {
             const menu = document.getElementById('mobileMenu');
+            const backdrop = document.getElementById('menuBackdrop'); 
             const hamburger = document.querySelector('.hamburger');
             
-            // "active" klassını əlavə et və ya sil
             menu.classList.toggle('active');
+            backdrop.classList.toggle('active'); 
             hamburger.classList.toggle('active');
         }
 
-        // --- ŞƏKİL SLIDER FUNKSİYALARI ---
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                const menu = document.getElementById('mobileMenu');
+                const backdrop = document.getElementById('menuBackdrop');
+                const hamburger = document.querySelector('.hamburger');
+                
+                if (menu.classList.contains('active')) {
+                    menu.classList.remove('active');
+                    backdrop.classList.remove('active');
+                    hamburger.classList.remove('active');
+                }
+            }
+        });
+
+        // --- SLIDER JS ---
         const slider = document.getElementById('scrollContainer');
         const scrollAmount = 300; 
         let autoScrollInterval;
-
         function slideRight() {
             if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 10) {
                 slider.scrollTo({ left: 0, behavior: 'smooth' });
@@ -473,27 +474,12 @@
                 slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
             }
         }
-
-        function slideLeft() {
-            slider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-        }
-
-        function startAutoScroll() {
-            autoScrollInterval = setInterval(slideRight, 5000); 
-        }
-
-        function stopAutoScroll() {
-            clearInterval(autoScrollInterval);
-        }
-
+        function slideLeft() { slider.scrollBy({ left: -scrollAmount, behavior: 'smooth' }); }
+        function startAutoScroll() { autoScrollInterval = setInterval(slideRight, 5000); }
+        function stopAutoScroll() { clearInterval(autoScrollInterval); }
         startAutoScroll();
-
         slider.addEventListener('mouseenter', stopAutoScroll);
         slider.addEventListener('mouseleave', startAutoScroll);
-        document.querySelector('.left-btn').addEventListener('mouseenter', stopAutoScroll);
-        document.querySelector('.left-btn').addEventListener('mouseleave', startAutoScroll);
-        document.querySelector('.right-btn').addEventListener('mouseenter', stopAutoScroll);
-        document.querySelector('.right-btn').addEventListener('mouseleave', startAutoScroll);
     </script>
 </body>
 </html>
